@@ -1,32 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anh xin lỗi</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Anh xin lỗi em 💔</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="card">
-    <img
-      class="hero"
-      src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=900&auto=format&fit=crop&q=60"
-      alt="Cute"
-    />
 
-    <h1 class="title">Bé iuu ơi choo anhh xinn lỗi nhóooo</h1>
-    <p class="subtitle">Bé bấm “Em chấp nhận” là tha lỗi cho anh đó 🥺</p>
+<!-- NHẠC -->
+<div class="music">
+  <iframe 
+    src="https://drive.google.com/file/d/1kJ3jS7mxwEHs6RhBgUdnMu0Y-Do0d_2X/preview"
+    allow="autoplay">
+  </iframe>
+</div>
 
-    <div class="btn-row">
-      <button id="btnYes" class="btn btn-yes">Em chấp nhận</button>
-      <button id="btnNo" class="btn btn-no">Không bao giờ</button>
-    </div>
+<div class="content">
+  <h1>Anh xin lỗi em 🥺</h1>
 
-    <p class="hint">Tip: chạm vào “Không bao giờ” thử xem 😼</p>
-  </main>
+  <p id="text">
+    Anh biết anh sai rồi...  
+    Anh nhớ em nhiều lắm 😞  
+    Cho anh cơ hội sửa sai nha...
+  </p>
 
-  <div id="toast" class="toast" aria-live="polite"></div>
+  <button class="yes" onclick="acceptLove()">
+    Tha lỗi cho anh 💖
+  </button>
 
-  <script src="script.js"></script>
+  <button class="no" id="noBtn">
+    Không 😡
+  </button>
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
