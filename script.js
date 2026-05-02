@@ -1,49 +1,71 @@
-const btnNo = document.getElementById("btnNo");
-const btnYes = document.getElementById("btnYes");
-const toast = document.getElementById("toast");
-const row = document.querySelector(".btn-row");
-
-const TARGET_URL = "https://dung09-daries.github.io/tamthu/";
-
-function showToast(msg) {
-  toast.textContent = msg;
-  toast.classList.add("show");
-  clearTimeout(showToast._t);
-  showToast._t = setTimeout(() => toast.classList.remove("show"), 1000);
+body {
+  margin: 0;
+  background: linear-gradient(to right, #ff758c, #ff7eb3);
+  font-family: Arial;
+  color: white;
+  text-align: center;
+  overflow: hidden;
 }
 
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n));
+/* nội dung */
+.content {
+  margin-top: 100px;
 }
 
-function moveNoButton() {
-  if (getComputedStyle(btnNo).position !== "absolute") {
-    const r = btnNo.getBoundingClientRect();
-    const rr = row.getBoundingClientRect();
-    btnNo.style.position = "absolute";
-    btnNo.style.left = `${r.left - rr.left}px`;
-    btnNo.style.top  = `${r.top  - rr.top }px`;
-  }
-
-  const rr = row.getBoundingClientRect();
-  const br = btnNo.getBoundingClientRect();
-
-  const maxX = rr.width - br.width;
-  const maxY = rr.height - br.height;
-
-  const x = Math.random() * maxX;
-  const y = Math.random() * maxY;
-
-  btnNo.style.left = `${clamp(x, 0, maxX)}px`;
-  btnNo.style.top  = `${clamp(y, 0, maxY)}px`;
-
-  showToast("Hong cho chọn 😼");
+h1 {
+  font-size: 50px;
 }
 
-btnNo.addEventListener("mouseenter", moveNoButton);
-btnNo.addEventListener("touchstart", (e) => { e.preventDefault(); moveNoButton(); }, { passive: false });
-btnNo.addEventListener("click", moveNoButton);
+p {
+  font-size: 20px;
+  width: 70%;
+  margin: auto;
+}
 
-btnYes.addEventListener("click", () => {
-  window.location.href = TARGET_URL; // MỞ LIỀN
-});
+/* nút */
+button {
+  margin-top: 20px;
+  padding: 15px 30px;
+  border-radius: 30px;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.yes {
+  background: white;
+  color: red;
+}
+
+.no {
+  background: black;
+  color: white;
+  position: absolute;
+}
+
+/* nhạc */
+.music {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  width: 250px;
+  height: 80px;
+}
+
+.music iframe {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+/* tim rơi */
+.heart {
+  position: absolute;
+  color: red;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-10px); }
+  100% { transform: translateY(100vh); }
+}
