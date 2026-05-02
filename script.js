@@ -1,71 +1,24 @@
-body {
-  margin: 0;
-  background: linear-gradient(to right, #ff758c, #ff7eb3);
-  font-family: Arial;
-  color: white;
-  text-align: center;
-  overflow: hidden;
-}
+const noBtn = document.getElementById('noBtn');
+const yesBtn = document.getElementById('yesBtn');
 
-/* nội dung */
-.content {
-  margin-top: 100px;
-}
+// Hiệu ứng nút "Không" chạy trốn chuyên nghiệp
+noBtn.addEventListener('mouseover', () => {
+    // Tính toán vùng an toàn để nút không chạy ra ngoài màn hình
+    const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+    const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+    
+    // Tạo vị trí ngẫu nhiên mới
+    const randomX = Math.floor(Math.random() * maxX) + 10;
+    const randomY = Math.floor(Math.random() * maxY) + 10;
+    
+    // Cập nhật vị trí nút
+    noBtn.style.left = randomX + 'px';
+    noBtn.style.top = randomY + 'px';
+});
 
-h1 {
-  font-size: 50px;
-}
-
-p {
-  font-size: 20px;
-  width: 70%;
-  margin: auto;
-}
-
-/* nút */
-button {
-  margin-top: 20px;
-  padding: 15px 30px;
-  border-radius: 30px;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.yes {
-  background: white;
-  color: red;
-}
-
-.no {
-  background: black;
-  color: white;
-  position: absolute;
-}
-
-/* nhạc */
-.music {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  width: 250px;
-  height: 80px;
-}
-
-.music iframe {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-}
-
-/* tim rơi */
-.heart {
-  position: absolute;
-  color: red;
-  animation: fall linear infinite;
-}
-
-@keyframes fall {
-  0% { transform: translateY(-10px); }
-  100% { transform: translateY(100vh); }
-}
+// Hiệu ứng khi bấm vào nút "Có"
+yesBtn.addEventListener('click', () => {
+    alert('Hì hì, biết ngay là bé sẽ tha lỗi cho anh mà! Yêu Dũng siêu đẹp trai nhất ❤️');
+    // Bạn có thể chuyển hướng sang một link ảnh/video khác tại đây
+    // window.location.href = "https://facebook.com/n"; 
+});
