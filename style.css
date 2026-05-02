@@ -1,28 +1,155 @@
-const noBtn = document.getElementById("noBtn");
-
-// nút "Không" chạy trốn
-noBtn.addEventListener("mouseover", () => {
-  noBtn.style.left = Math.random() * 90 + "vw";
-  noBtn.style.top = Math.random() * 90 + "vh";
-});
-
-// bấm "Tha lỗi"
-function acceptLove() {
-  alert("Anh yêu em nhiều lắm ❤️");
+/* --- CÀI ĐẶT CHUNG --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-// tim rơi
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.classList.add("heart");
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = Math.random() * 3 + 2 + "s";
-  document.body.appendChild(heart);
-
-  setTimeout(() => {
-    heart.remove();
-  }, 5000);
+body {
+    height: 100vh;
+    width: 100%;
+    /* Nền màu hồng gradient ngọt ngào */
+    background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+    font-family: 'Quicksand', sans-serif;
+    overflow: hidden; /* Ngăn hiện thanh cuộn khi nút chạy trốn */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-setInterval(createHeart, 300);
+/* --- HIỆU ỨNG TRÁI TIM BAY NỀN --- */
+.heart-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Nằm dưới nội dung chính */
+}
+
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ff80ab;
+    transform: rotate(-45deg);
+    opacity: 0.2;
+    animation: hearts-fly 15s infinite linear;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ff80ab;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    left: 10px;
+    top: 0;
+}
+
+/* Định vị và thời gian bay khác nhau cho các trái tim */
+.heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+.heart:nth-child(2) { left: 30%; animation-delay: 3s; animation-duration: 18s; }
+.heart:nth-child(3) { left: 50%; animation-delay: 7s; }
+.heart:nth-child(4) { left: 70%; animation-delay: 2s; animation-duration: 20s; }
+.heart:nth-child(5) { left: 90%; animation-delay: 10s; }
+
+@keyframes hearts-fly {
+    0% {
+        top: 110%;
+        transform: rotate(-45deg) scale(0.5);
+    }
+    100% {
+        top: -10%;
+        transform: rotate(-45deg) scale(1.5);
+    }
+}
+
+/* --- KHUNG NỘI DUNG CHÍNH --- */
+.wrapper {
+    z-index: 1; /* Nằm trên nền trái tim */
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.85); /* Trắng trong suốt */
+    padding: 50px;
+    border-radius: 30px;
+    box-shadow: 0 15px 35px rgba(216, 27, 96, 0.2); /* Đổ bóng hồng */
+    text-align: center;
+    backdrop-filter: blur(10px); /* Làm mờ nền phía sau */
+    border: 3px solid #f48fb1; /* Viền hồng pastel */
+    max-width: 450px;
+}
+
+.image-box img {
+    width: 180px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+}
+
+/* Font chữ nghệ thuật lãng mạn */
+.main-title {
+    font-family: 'Dancing Script', cursive;
+    color: #d81b60;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.sub-title {
+    color: #880e4f;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    line-height: 1.5;
+}
+
+/* --- NÚT BẤM --- */
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    height: 50px;
+    position: relative; /* Để định vị nút chạy trốn */
+}
+
+button {
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Quicksand', sans-serif;
+    border: none;
+    border-radius: 50px; /* Nút bo tròn */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Nút "Đồng ý" màu đỏ hồng đậm */
+#yesBtn {
+    background: linear-gradient(45deg, #ff5252, #ff4081);
+    color: white;
+}
+
+#yesBtn:hover {
+    transform: scale(1.1); /* Phóng to nhẹ khi di chuột */
+    box-shadow: 0 8px 25px rgba(255, 64, 129, 0.5);
+}
+
+/* Nút "Không" màu trắng, viền hồng */
+#noBtn {
+    background-color: white;
+    color: #ad1457;
+    border: 2px solid #f8bbd0;
+    position: absolute; /* Cần thiết để nút có thể nhảy */
+    right: 0; /* Vị trí ban đầu */
+}
